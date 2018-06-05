@@ -1,13 +1,13 @@
-package com.example.ramyaramaraj.movie.activities;
+package com.example.ramyaramaraj.movie.activities.Activities;
 
-import android.support.v4.app.Fragment;
-
-import android.support.v4.app.FragmentManager;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ramyaramaraj.movie.R;
 import com.example.ramyaramaraj.movie.activities.fragments.NowPlayingFragment;
@@ -22,11 +25,23 @@ import com.example.ramyaramaraj.movie.activities.fragments.UpcomingFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String PREFS_NAME = "LoginPrefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);;
+        setContentView( R.layout.nav_header_main);
+
+        //Get UserName from intent
+        Intent intent = getIntent();
+        String Name = intent.getStringExtra("name");
+       // setContentView( R.layout.nav_header_main);
+        TextView tv = (TextView) findViewById(R.id.usernamehead);
+        tv.setText(Name);
         setContentView(R.layout.activity_main);
+        Toast.makeText(getApplicationContext(), Name, Toast.LENGTH_SHORT).show();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,8 +60,8 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+       navigationView.setNavigationItemSelectedListener(this);
         showFragment(NowPlayingFragment.class);
     }
 
@@ -96,6 +111,11 @@ public class MainActivity extends AppCompatActivity
             fragment=UpcomingFragment.class;
             showFragment(fragment);
         } else if (id == R.id.logout) {
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.remove("logged");
+            editor.commit();
+            finish();
 
         }
 
@@ -113,7 +133,7 @@ public class MainActivity extends AppCompatActivity
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-       FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flname,fragment).commit();
 
     }
