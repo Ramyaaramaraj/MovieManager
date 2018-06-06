@@ -32,6 +32,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ramyaramaraj.movie.activities.Activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.Activities.SignupActivity"
+            >
+        </activity>
+        <activity
+            android:name=".activities.Activities.UserName"
+            >
+        </activity>
     </application>
 
 </manifest>

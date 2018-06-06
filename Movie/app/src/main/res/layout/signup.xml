@@ -8,14 +8,24 @@
     android:layout_centerVertical="true"
     android:layout_margin="60dp">
 
-    <android.support.design.widget.TextInputLayout
-        app:counterEnabled="true"
-        app:counterMaxLength="20"
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Create Your Profile"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <android.support.design.widget.TextInputLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="20">
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/Susernametext"
+            android:id="@+id/Susername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="UserName" />
@@ -23,7 +33,7 @@
 
     <android.support.design.widget.TextInputLayout
         app:counterEnabled="true"
-        app:counterMaxLength="20"
+        app:counterMaxLength="35"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -31,7 +41,9 @@
             android:id="@+id/Semail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+           />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -43,11 +55,25 @@
             android:id="@+id/Spassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="Password" />
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        app:passwordToggleEnabled="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/SRepassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            app:counterEnabled="true"
+            android:hint="Retype Password" />
+    </android.support.design.widget.TextInputLayout>
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/createaccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
